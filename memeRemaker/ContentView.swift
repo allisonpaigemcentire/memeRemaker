@@ -9,19 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject private var viewModel: MemeRemakerViewModel
+    @ObservedObject var viewModel = MemeRemakerViewModel()
     
-    init(memeText: String) {
-        _viewModel = StateObject(wrappedValue: MemeRemakerViewModel(memeText: memeText))
-    }
+    init() {}
     
     var body: some View {
-        MemeTextField("Type something", text: $viewModel.memeText).padding(.horizontal)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(memeText: "Type something")
+        VStack {
+            Image(uiImage: $viewModel.generatedMeme.wrappedValue ?? UIImage())
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width, height: 300, alignment: .topLeading)
+                .clipped()
+                .padding()
+            MemeTextField("Input text", text: $viewModel.memeText)
+                .padding(.horizontal)
+            Button("Generate Meme") {
+                Task {
+                    await viewModel.getMeme()
+                }
+            }
+            .padding()
+            .background(Color(red: 0, green: 0, blue: 0.5))
+            .clipShape(Capsule())
+        }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F37A130728CE49E000ABCC01 /* MemeRemakerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A130628CE49E000ABCC01 /* MemeRemakerService.swift */; };
+		F37A130A28CE4DF700ABCC01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A130928CE4DF700ABCC01 /* Constants.swift */; };
 		F394964828C6645C005FE533 /* memeRemakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394964728C6645C005FE533 /* memeRemakerApp.swift */; };
 		F394964A28C6645C005FE533 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394964928C6645C005FE533 /* ContentView.swift */; };
 		F394964C28C6645D005FE533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394964B28C6645D005FE533 /* Assets.xcassets */; };
@@ -17,6 +19,7 @@
 		F394967328C66502005FE533 /* MemeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394967228C66502005FE533 /* MemeTextField.swift */; };
 		F394967528C66658005FE533 /* memeRemakerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394967428C66658005FE533 /* memeRemakerViewModel.swift */; };
 		F394967D28C66CED005FE533 /* memeRemakerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394967C28C66CED005FE533 /* memeRemakerViewModelTests.swift */; };
+		F394968B28C69EBE005FE533 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F394968A28C69EBE005FE533 /* Algorithms */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F37A130628CE49E000ABCC01 /* MemeRemakerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeRemakerService.swift; sourceTree = "<group>"; };
+		F37A130928CE4DF700ABCC01 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F394964428C6645C005FE533 /* memeRemaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memeRemaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F394964728C6645C005FE533 /* memeRemakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memeRemakerApp.swift; sourceTree = "<group>"; };
 		F394964928C6645C005FE533 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F394968B28C69EBE005FE533 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F37A130528CE49AB00ABCC01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F394967428C66658005FE533 /* memeRemakerViewModel.swift */,
+				F37A130928CE4DF700ABCC01 /* Constants.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F37A130828CE49F200ABCC01 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F37A130628CE49E000ABCC01 /* MemeRemakerService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		F394963B28C6645C005FE533 = {
 			isa = PBXGroup;
 			children = (
@@ -117,11 +140,12 @@
 		F394964628C6645C005FE533 /* memeRemaker */ = {
 			isa = PBXGroup;
 			children = (
-				F394967128C664ED005FE533 /* Elements */,
 				F394964728C6645C005FE533 /* memeRemakerApp.swift */,
-				F394967428C66658005FE533 /* memeRemakerViewModel.swift */,
 				F394964928C6645C005FE533 /* ContentView.swift */,
 				F394964B28C6645D005FE533 /* Assets.xcassets */,
+				F37A130828CE49F200ABCC01 /* Service */,
+				F37A130528CE49AB00ABCC01 /* Models */,
+				F394967128C664ED005FE533 /* Utilities */,
 				F394964D28C6645D005FE533 /* Preview Content */,
 			);
 			path = memeRemaker;
@@ -152,12 +176,12 @@
 			path = memeRemakerUITests;
 			sourceTree = "<group>";
 		};
-		F394967128C664ED005FE533 /* Elements */ = {
+		F394967128C664ED005FE533 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				F394967228C66502005FE533 /* MemeTextField.swift */,
 			);
-			path = Elements;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		F394967B28C66CED005FE533 /* memeRemakerViewModelTests */ = {
@@ -184,6 +208,9 @@
 			dependencies = (
 			);
 			name = memeRemaker;
+			packageProductDependencies = (
+				F394968A28C69EBE005FE533 /* Algorithms */,
+			);
 			productName = memeRemaker;
 			productReference = F394964428C6645C005FE533 /* memeRemaker.app */;
 			productType = "com.apple.product-type.application";
@@ -278,6 +305,9 @@
 				Base,
 			);
 			mainGroup = F394963B28C6645C005FE533;
+			packageReferences = (
+				F394968928C69EBE005FE533 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = F394964528C6645C005FE533 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -331,7 +361,9 @@
 				F394967528C66658005FE533 /* memeRemakerViewModel.swift in Sources */,
 				F394964A28C6645C005FE533 /* ContentView.swift in Sources */,
 				F394964828C6645C005FE533 /* memeRemakerApp.swift in Sources */,
+				F37A130728CE49E000ABCC01 /* MemeRemakerService.swift in Sources */,
 				F394967328C66502005FE533 /* MemeTextField.swift in Sources */,
+				F37A130A28CE4DF700ABCC01 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +746,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F394968928C69EBE005FE533 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F394968A28C69EBE005FE533 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F394968928C69EBE005FE533 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F394963C28C6645C005FE533 /* Project object */;
 }
