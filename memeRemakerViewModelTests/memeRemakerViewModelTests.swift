@@ -22,16 +22,33 @@ class memeRemakerViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_MemeRemakerViewModel_memeText_textEqualsMemeTextValue() {
+    func test_MemeRemakerViewModel_memeText_textEqualsGivenValue() {
         // GIVEN
         let memeText: String = "testing this text"
-        
         // WHEN
         let viewModel = MemeRemakerViewModel(memeText: memeText)
-        
         // THEN
-        
         XCTAssertEqual(viewModel.memeText, "testing this text")
     }
-
+    
+    func test_MemeRemakerViewModel_memeText_textIsEmpty() {
+        // GIVEN
+        let memeText: String = ""
+        // WHEN
+        let viewModel = MemeRemakerViewModel(memeText: memeText)
+        // THEN
+        XCTAssertTrue(viewModel.memeText.isEmpty)
+    }
+    
+    func test_MemeRemakerViewModel_memeText_shouldBeInjectedValue_stressed() {
+        
+        for _ in 0..<100 {
+            // GIVEN
+            let memeText: String = UUID().uuidString
+            // WHEN
+            let viewModel = MemeRemakerViewModel(memeText: memeText)
+            // THEN
+            XCTAssertEqual(viewModel.memeText, memeText)
+        }
+    }
 }
