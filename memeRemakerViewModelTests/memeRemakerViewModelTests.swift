@@ -3,7 +3,6 @@
 //  memeRemakerViewModelTests
 //
 //  Created by Allison Mcentire on 9/5/22.
-//
 
 import XCTest
 @testable import memeRemaker
@@ -14,41 +13,30 @@ import XCTest
 
 class memeRemakerViewModelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func test_MemeRemakerViewModel_memeText_textEqualsGivenValue() {
-        // GIVEN
-        let memeText: String = "testing this text"
-        // WHEN
-        let viewModel = MemeRemakerViewModel(memeText: memeText)
-        // THEN
-        XCTAssertEqual(viewModel.memeText, "testing this text")
+    let SUT = MemeRemakerViewModel()
+    
+    
+    func test_fetchMemeArray_onLoading_returnsArrayOfStrings() async throws {
+        await SUT.getMemeNameArray()
+        XCTAssertNotNil(SUT.memeNameArray)
+        XCTAssertTrue(((SUT.memeNameArray?.contains("Condescending-Wonka")) != nil))
+        XCTAssertTrue(SUT.memeNameArray?.count ?? 0 > 100)
     }
     
-    func test_MemeRemakerViewModel_memeText_textIsEmpty() {
-        // GIVEN
-        let memeText: String = ""
-        // WHEN
-        let viewModel = MemeRemakerViewModel(memeText: memeText)
-        // THEN
-        XCTAssertTrue(viewModel.memeText.isEmpty)
+    func test_getMeme_expectedInputValues_generatesMemeImage() async throws {
+        XCTAssertNil(SUT.generatedMeme)
+        SUT.memeText = "Welcome to the Meme test"
+        await SUT.getMemeNameArray()
+        await SUT.getMeme()
+        XCTAssertNotNil(SUT.generatedMeme)
     }
     
-    func test_MemeRemakerViewModel_memeText_shouldBeInjectedValue_stressed() {
-        
-        for _ in 0..<100 {
-            // GIVEN
-            let memeText: String = UUID().uuidString
-            // WHEN
-            let viewModel = MemeRemakerViewModel(memeText: memeText)
-            // THEN
-            XCTAssertEqual(viewModel.memeText, memeText)
-        }
+    func test_getMeme_unexpectedInputValues_generatesMemeImage() async throws {
+        XCTAssertNil(SUT.generatedMeme)
+        SUT.memeText = "(*&^%$#@#$%^&*&^%$#$%^&*&^%$#$%^"
+        await SUT.getMemeNameArray()
+        await SUT.getMeme()
+        XCTAssertNotNil(SUT.generatedMeme)
     }
 }
+

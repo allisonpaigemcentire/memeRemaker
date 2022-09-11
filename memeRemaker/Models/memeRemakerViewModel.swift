@@ -15,19 +15,26 @@ class MemeRemakerViewModel: ObservableObject {
     
     @Published var memeText: String = ""
     @Published var generatedMeme: UIImage?
+    internal var memeNameArray: [String]?
     
     init() {
         
     }
    
-    @MainActor
-    func getMeme() async {
+    internal func getMemeNameArray() async {
         guard let url = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/images") else { return }
         
         do {
-            let memeNameArray = try await MemeRemakerService.fetchMemeNames(url: url)
-            print(memeNameArray)
-            self.generatedMeme = try await MemeRemakerService.fetchMemeImage(memeText: memeText, imageName: memeNameArray[Int.random(in: 1...999)])
+            memeNameArray = try await MemeRemakerService.fetchMemeNames(url: url)
+        } catch {
+            print(error)
+        }
+    }
+    
+    @MainActor
+    internal func getMeme() async {
+        do {
+        self.generatedMeme = try await MemeRemakerService.fetchMemeImage(memeText: memeText, imageName: memeNameArray?[Int.random(in: 1...999)] ?? "Condescending-Wonka")
         } catch {
             print(error)
         }

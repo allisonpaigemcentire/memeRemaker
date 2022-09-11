@@ -6,7 +6,6 @@
 //
 import Combine
 import Foundation
-import Algorithms
 import UIKit
 
 class MemeRemakerService {
@@ -19,8 +18,8 @@ class MemeRemakerService {
 
         let session = URLSession.shared
         let decoder = JSONDecoder()
-        let (data, response) = try await session.data(for: request as URLRequest)
-        return try decoder.decode(Array.self, from: data)
+        let data = try await session.data(for: request as URLRequest)
+        return try decoder.decode(Array.self, from: data.0)
     }
     
     static func fetchMemeImage(memeText: String, imageName: String) async throws -> UIImage {
@@ -52,7 +51,7 @@ class MemeRemakerService {
         let topText = top.joined(separator: "%20")
         let bottomText = bottom.joined(separator: "%20")
         
-        if let url = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/meme?top=\(topText)&bottom=\(bottomText)&meme=\(imageName)&font_size=75&font=Impact") {
+        if let url = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/meme?top=\(topText)&bottom=\(bottomText)&meme=\(imageName)&font_size=50&font=Impact") {
             return url
         }
         
