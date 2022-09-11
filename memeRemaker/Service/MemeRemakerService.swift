@@ -20,8 +20,6 @@ class MemeRemakerService {
         let session = URLSession.shared
         let decoder = JSONDecoder()
         let (data, response) = try await session.data(for: request as URLRequest)
-        print("response", response)
-        
         return try decoder.decode(Array.self, from: data)
     }
     
@@ -46,13 +44,13 @@ class MemeRemakerService {
     
     static func generateRequestURL(memeText: String, imageName: String) -> URL {
         let memeTextArray = memeText.components(separatedBy: " ")
-        let chunks = memeTextArray.chunks(ofCount: memeTextArray.count/2)
+        let chunks = memeTextArray.split()
         
-        let top = chunks.first
-        let bottom = chunks.last
+        let top = chunks.left
+        let bottom = chunks.right
         
-        let topText = top?.joined(separator: "%20") ?? ""
-        let bottomText = bottom?.joined(separator: "%20") ?? ""
+        let topText = top.joined(separator: "%20")
+        let bottomText = bottom.joined(separator: "%20")
         
         if let url = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/meme?top=\(topText)&bottom=\(bottomText)&meme=\(imageName)&font_size=75&font=Impact") {
             return url

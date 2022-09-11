@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F37A130728CE49E000ABCC01 /* MemeRemakerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A130628CE49E000ABCC01 /* MemeRemakerService.swift */; };
 		F37A130A28CE4DF700ABCC01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A130928CE4DF700ABCC01 /* Constants.swift */; };
+		F37A130C28CE774200ABCC01 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A130B28CE774200ABCC01 /* Extensions.swift */; };
 		F394964828C6645C005FE533 /* memeRemakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394964728C6645C005FE533 /* memeRemakerApp.swift */; };
 		F394964A28C6645C005FE533 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394964928C6645C005FE533 /* ContentView.swift */; };
 		F394964C28C6645D005FE533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394964B28C6645D005FE533 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		F37A130628CE49E000ABCC01 /* MemeRemakerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeRemakerService.swift; sourceTree = "<group>"; };
 		F37A130928CE4DF700ABCC01 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F37A130B28CE774200ABCC01 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F394964428C6645C005FE533 /* memeRemaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memeRemaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F394964728C6645C005FE533 /* memeRemakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memeRemakerApp.swift; sourceTree = "<group>"; };
 		F394964928C6645C005FE533 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				F394967228C66502005FE533 /* MemeTextField.swift */,
+				F37A130B28CE774200ABCC01 /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				F37A130728CE49E000ABCC01 /* MemeRemakerService.swift in Sources */,
 				F394967328C66502005FE533 /* MemeTextField.swift in Sources */,
 				F37A130A28CE4DF700ABCC01 /* Constants.swift in Sources */,
+				F37A130C28CE774200ABCC01 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

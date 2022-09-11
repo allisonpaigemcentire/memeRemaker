@@ -15,12 +15,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: $viewModel.generatedMeme.wrappedValue ?? UIImage())
+            Image(uiImage: ($viewModel.generatedMeme.wrappedValue ?? UIImage(named: "noproblem")) ?? UIImage())
                 .resizable()
-                .frame(width: UIScreen.main.bounds.width, height: 300, alignment: .topLeading)
+                .frame(width: UIScreen.main.bounds.width, height: 500, alignment: .topLeading)
                 .clipped()
                 .padding()
-            MemeTextField("Input text", text: $viewModel.memeText)
+            MemeTextField("Input Meme Text", text: $viewModel.memeText)
                 .padding(.horizontal)
             Button("Generate Meme") {
                 Task {

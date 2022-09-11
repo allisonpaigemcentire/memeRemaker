@@ -26,6 +26,7 @@ class MemeRemakerViewModel: ObservableObject {
         
         do {
             let memeNameArray = try await MemeRemakerService.fetchMemeNames(url: url)
+            print(memeNameArray)
             self.generatedMeme = try await MemeRemakerService.fetchMemeImage(memeText: memeText, imageName: memeNameArray[Int.random(in: 1...999)])
         } catch {
             print(error)
