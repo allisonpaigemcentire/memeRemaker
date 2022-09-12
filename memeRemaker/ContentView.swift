@@ -18,7 +18,7 @@ struct ContentView: View {
             Image(uiImage: ($viewModel.generatedMeme.wrappedValue ?? UIImage(named: "noproblem")) ?? UIImage())
                 .resizable()
                 .frame(minWidth: 0, idealWidth: UIScreen.main.bounds.width, maxWidth: 1000, minHeight: 0, idealHeight: UIScreen.main.bounds.height/2, maxHeight: 1000, alignment: .top)
-                .clipped()
+                .scaledToFit()
                 .padding()
             MemeTextField("Input Meme Text", text: $viewModel.memeText)
                 .padding(.horizontal)
