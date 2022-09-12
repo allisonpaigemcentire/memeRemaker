@@ -14,6 +14,7 @@ import XCTest
 class memeRemakerViewModelTests: XCTestCase {
 
     let SUT = MemeRemakerViewModel()
+    let service = MemeRemakerService()
     
     
     func test_fetchMemeArray_onLoading_returnsArrayOfStrings() async throws {

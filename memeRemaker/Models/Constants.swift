@@ -14,4 +14,5 @@ class Constants {
         "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
     ]
     
+    public let nameArray = "https://ronreiter-meme-generator.p.rapidapi.com/images"
 }

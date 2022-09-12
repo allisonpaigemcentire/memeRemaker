@@ -6,13 +6,10 @@
 //
 
 import SwiftUI
-import Combine
 import Foundation
 
 class MemeRemakerViewModel: ObservableObject {
 
-    private var cancellables = Set<AnyCancellable>()
-    
     @Published var memeText: String = ""
     @Published var generatedMeme: UIImage?
     internal var memeNameArray: [String]?
@@ -22,7 +19,7 @@ class MemeRemakerViewModel: ObservableObject {
     }
    
     internal func getMemeNameArray() async {
-        guard let url = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/images") else { return }
+        guard let url = URL(string: Constants().nameArray) else { return }
         
         do {
             memeNameArray = try await MemeRemakerService.fetchMemeNames(url: url)

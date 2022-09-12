@@ -4,13 +4,12 @@
 //
 //  Created by Allison Mcentire on 9/11/22.
 //
-import Combine
 import Foundation
 import UIKit
 
 class MemeRemakerService {
     
-    static func fetchMemeNames(url: URL) async throws -> Array<String> {
+    static internal func fetchMemeNames(url: URL) async throws -> Array<String> {
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -22,7 +21,7 @@ class MemeRemakerService {
         return try decoder.decode(Array.self, from: data.0)
     }
     
-    static func fetchMemeImage(memeText: String, imageName: String) async throws -> UIImage {
+    static internal func fetchMemeImage(memeText: String, imageName: String) async throws -> UIImage {
         
         let url = generateRequestURL(memeText: memeText, imageName: imageName)
         
@@ -32,8 +31,8 @@ class MemeRemakerService {
 
         let session = URLSession.shared
         do {
-            let (data, _) = try await session.data(for: request as URLRequest)
-            return UIImage(data: data) ?? UIImage()
+            let data = try await session.data(for: request as URLRequest)
+            return UIImage(data: data.0) ?? UIImage()
         } catch {
             print(error)
         }
@@ -41,7 +40,7 @@ class MemeRemakerService {
         return UIImage(systemName: "noproblem") ?? UIImage()
     }
     
-    static func generateRequestURL(memeText: String, imageName: String) -> URL {
+    static internal func generateRequestURL(memeText: String, imageName: String) -> URL {
         let memeTextArray = memeText.components(separatedBy: " ")
         let chunks = memeTextArray.split()
         
