@@ -11,17 +11,16 @@ import XCTest
 
 // Testing structure: Given, When, Then
 
-class memeRemakerViewModelTests: XCTestCase {
+class MemeRemakerViewModelTests: XCTestCase {
 
     let SUT = MemeRemakerViewModel()
     let service = MemeRemakerService()
     
     
-    func test_fetchMemeArray_onLoading_returnsArrayOfStrings() async throws {
+    func test_fetchMemeArray_onLoading_returnsArrayOf_999Strings() async throws {
         await SUT.getMemeNameArray()
         XCTAssertNotNil(SUT.memeNameArray)
-        XCTAssertTrue(((SUT.memeNameArray?.contains("Condescending-Wonka")) != nil))
-        XCTAssertTrue(SUT.memeNameArray?.count ?? 0 > 100)
+        XCTAssertEqual(SUT.memeNameArray?.count, 999)
     }
     
     func test_getMeme_expectedInputValues_generatesMemeImage() async throws {

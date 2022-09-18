@@ -19,17 +19,20 @@ struct ContentView: View {
                 .resizable()
                 .frame(minWidth: 0, idealWidth: UIScreen.main.bounds.width, maxWidth: 1000, minHeight: 0, idealHeight: UIScreen.main.bounds.height/2, maxHeight: 1000, alignment: .top)
                 .scaledToFit()
+                .clipped()
                 .padding()
             MemeTextField("Input Meme Text", text: $viewModel.memeText)
                 .padding(.horizontal)
             Button("Generate Meme") {
+                // how would we cancel this call if the view were to be dismissed?
+                // https://www.hackingwithswift.com/quick-start/concurrency/how-to-cancel-a-task
                 Task { await viewModel.getMeme() }
             }
             .padding()
             .background(Color(red: 0, green: 0, blue: 0.5))
             .clipShape(Capsule())
-        }.onAppear {
-            Task { await viewModel.getMemeNameArray() }
+        }.task {
+            await viewModel.getMemeNameArray()
         }
     }
 }

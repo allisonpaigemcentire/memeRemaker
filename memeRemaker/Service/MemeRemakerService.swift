@@ -9,30 +9,60 @@ import UIKit
 
 class MemeRemakerService {
     
-    static internal func fetchMemeNames(url: URL) async throws -> Array<String> {
+    var session = URLSession.shared
+    
+    internal func fetchMemeNames(url: URL) async throws -> [String] {
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
-        request.allHTTPHeaderFields = Constants().headers
+        request.allHTTPHeaderFields = Constants.headers
 
-        let session = URLSession.shared
         let decoder = JSONDecoder()
-        let data = try await session.data(for: request as URLRequest)
-        return try decoder.decode(Array.self, from: data.0)
+        let (data, _) = try await session.data(for: request as URLRequest)
+        return try decoder.decode(Array.self, from: data)
     }
     
-    static internal func fetchMemeImage(memeText: String, imageName: String) async throws -> UIImage {
-        
-        let url = generateRequestURL(memeText: memeText, imageName: imageName)
+    // TO DO:
+    // write a function that excludes some of the images
+    // filter the array on that function
+    
+    internal func fetchMemeNamesStream(url: URL) -> AsyncThrowingStream<String, Error> {
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
-        request.allHTTPHeaderFields = Constants().headers
+        request.allHTTPHeaderFields = Constants.headers
 
-        let session = URLSession.shared
+        let decoder = JSONDecoder()
+        
+        return AsyncThrowingStream<String, Error> { continuation in
+            Task {
+                
+                do {
+                    let (data, _) = try await session.data(for: request as URLRequest)
+                    for name in try decoder.decode(Array<String>.self, from: data) {
+                        continuation.yield(name)
+                    }
+                    
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+        }
+        
+       // let (data, _) = try await session.data(for: request as URLRequest)
+       // return try decoder.decode(Array.self, from: data)
+    }
+
+    internal func fetchMemeImage(url: URL) async throws -> UIImage {
+        
+        let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = Constants.headers
+
+        
         do {
-            let data = try await session.data(for: request as URLRequest)
-            return UIImage(data: data.0) ?? UIImage()
+            let (data, _) = try await session.data(for: request as URLRequest)
+            return UIImage(data: data) ?? UIImage()
         } catch {
             print(error)
         }
@@ -40,7 +70,7 @@ class MemeRemakerService {
         return UIImage(systemName: "noproblem") ?? UIImage()
     }
     
-    static internal func generateRequestURL(memeText: String, imageName: String) -> URL {
+    internal func generateRequestURL(memeText: String, imageName: String) -> URL {
         let memeTextArray = memeText.components(separatedBy: " ")
         let chunks = memeTextArray.split()
         
@@ -54,7 +84,12 @@ class MemeRemakerService {
             return url
         }
         
-        return URL(fileURLWithPath: "")
+        // if the meme text contains an apostrophe the service will fail but it works at https://rapidapi.com/meme-generator-api-meme-generator-api-default/api/meme-generator/ so I'm not sure why yet
+        
+        guard let fallBackURL = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/meme?top=NO&bottom=APOSTROPHES&meme=\(imageName)&font_size=50&font=Impact") else {
+            return URL(fileURLWithPath: "no path")
+        }
+        return fallBackURL
     }
-   
+
 }
