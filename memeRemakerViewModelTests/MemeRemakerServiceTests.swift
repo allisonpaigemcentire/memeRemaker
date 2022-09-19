@@ -11,28 +11,25 @@ import XCTest
 class MemeRemakerServiceTests: XCTestCase {
     
     let SUT = MemeRemakerService()
-    
-    let model: MemeRemakerViewModel = {
-        let model = MemeRemakerViewModel()
-        model.memeText = "Give me a meme"
-        return model
-    }()
-    
-    override func setUpWithError() throws {
-        let testConfiguration = URLSessionConfiguration.default
-        testConfiguration.protocolClasses = [TestURLProtocol.self]
-        SUT.session = URLSession(configuration: testConfiguration)
-    }
 
-    // test will fail with error "Unexpected test scenario" because the function isn't an AsyncStream
-//    func test_example_fail() async throws {
-//        let url = SUT.generateRequestURL(memeText: model.memeText, imageName: "Condescending-Wonka")
-//        let meme = try await SUT.fetchMemeImage(url: url)
-//        XCTAssertNotNil(meme)
-//    }
+    func test_fetchMemeNamesStream_fetches_ExpectedName() async throws {
+        let expectation = self.expectation(description: "Name received.")
+        let fulfillExpectation = { expectation.fulfill() }
+
+        guard let url = URL(string: Constants.nameArray) else { return }
+        let asyncSequenceTask = Task {
+            for try await name in SUT.fetchMemeNamesStream(url: url) {
+                if name == "confession-kid" {
+                    fulfillExpectation()
+                }
+            }
+        }
+        await waitForExpectations(timeout: 10)
+        asyncSequenceTask.cancel()
+    }
     
-    func test_generateRequestURL_Returns_ExpectedURL() {
-        let url = SUT.generateRequestURL(memeText: model.memeText, imageName: "Condescending-Wonka")
+    @MainActor func test_generateRequestURL_Returns_ExpectedURL() {
+        let url = SUT.generateRequestURL(memeText: "Give me a meme", imageName: "Condescending-Wonka")
         XCTAssertEqual("https://ronreiter-meme-generator.p.rapidapi.com/meme?top=Give%20me&bottom=a%20meme&meme=Condescending-Wonka&font_size=50&font=Impact", url.absoluteString)
     }
 }

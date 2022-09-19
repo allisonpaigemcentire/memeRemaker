@@ -21,11 +21,7 @@ class MemeRemakerService {
         let (data, _) = try await session.data(for: request as URLRequest)
         return try decoder.decode(Array.self, from: data)
     }
-    
-    // TO DO:
-    // write a function that excludes some of the images
-    // filter the array on that function
-    
+
     internal func fetchMemeNamesStream(url: URL) -> AsyncThrowingStream<String, Error> {
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
@@ -48,9 +44,6 @@ class MemeRemakerService {
                 }
             }
         }
-        
-       // let (data, _) = try await session.data(for: request as URLRequest)
-       // return try decoder.decode(Array.self, from: data)
     }
 
     internal func fetchMemeImage(url: URL) async throws -> UIImage {
@@ -84,7 +77,7 @@ class MemeRemakerService {
             return url
         }
         
-        // if the meme text contains an apostrophe the service will fail but it works at https://rapidapi.com/meme-generator-api-meme-generator-api-default/api/meme-generator/ so I'm not sure why yet
+        // TO DO: if the meme text contains an apostrophe the service will fail but it works at https://rapidapi.com/meme-generator-api-meme-generator-api-default/api/meme-generator/. Solve and then remove the fallback
         
         guard let fallBackURL = URL(string: "https://ronreiter-meme-generator.p.rapidapi.com/meme?top=NO&bottom=APOSTROPHES&meme=\(imageName)&font_size=50&font=Impact") else {
             return URL(fileURLWithPath: "no path")

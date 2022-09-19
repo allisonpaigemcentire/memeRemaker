@@ -8,6 +8,16 @@
 import Foundation
 import UIKit
 
+struct MemeName: Identifiable, Hashable {
+    var id: UUID
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+        self.id = UUID()
+    }
+}
+
 struct GeneratedMeme {
     let memeImage: UIImage
     let memeText: String

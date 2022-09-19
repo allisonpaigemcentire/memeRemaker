@@ -10,8 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var viewModel = MemeRemakerViewModel()
+    @State private var selectedMeme: MemeName = MemeName(name: "Aw-Yeah-Rage-Face")
     
-    init() {}
+    var showPicker: Bool = false
+    
+    init(showPicker: Bool) {
+        self.showPicker = showPicker
+    }
     
     var body: some View {
         VStack {
@@ -23,10 +28,23 @@ struct ContentView: View {
                 .padding()
             MemeTextField("Input Meme Text", text: $viewModel.memeText)
                 .padding(.horizontal)
+            if showPicker {
+                Picker("Pick a meme", selection: $selectedMeme) {
+                    ForEach(viewModel.memeNameArray, id: \.self) {
+                        Text($0.name)
+                    }
+                }
+                .padding()
+                .pickerStyle(WheelPickerStyle())
+            }
             Button("Generate Meme") {
                 // how would we cancel this call if the view were to be dismissed?
                 // https://www.hackingwithswift.com/quick-start/concurrency/how-to-cancel-a-task
-                Task { await viewModel.getMeme() }
+                if showPicker {
+                    Task { await viewModel.getMeme(selection: selectedMeme.name) }
+                } else {
+                    Task { await viewModel.getMeme() }
+                }
             }
             .padding()
             .background(Color(red: 0, green: 0, blue: 0.5))
@@ -36,3 +54,9 @@ struct ContentView: View {
         }
     }
 }
+//
+//Picker(selection: $selectedMeme, label: Text("Please choose a color")) {
+//    ForEach(viewModel.memeNameArray) { memeName in
+//            Text(memeName.name).tag(memeName.id)
+//        }
+//    }
