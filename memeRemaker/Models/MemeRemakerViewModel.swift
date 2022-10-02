@@ -14,26 +14,26 @@ class MemeRemakerViewModel: ObservableObject {
     @Published var memeNameArray = [MemeName(name: "Aw-Yeah-Rage-Face")]
     @Published var memeText: String = ""
     @Published var generatedMeme: UIImage?
+    internal var memeContainer: GeneratedMeme?
     
     let memeRemakerService = MemeRemakerService()
     let discardedMemes = DiscardedMemes()
     
-    init() {
-        
-    }
+    init() {}
 
     internal func getMemeNameArray() async {
         guard let url = URL(string: Constants.nameArray) else { return }
         
         do {
             for try await name in memeRemakerService.fetchMemeNamesStream(url: url) {
-                if !discardedMemes.nameArray.contains(name) {
+                if !discardedMemes.discardedMemeArray.contains(name) {
                     memeNameArray.append(MemeName(name: name))
                 }
             }
         } catch {
             print(error)
         }
+        
     }
 
     internal func getMeme(selection: String? = nil) async {

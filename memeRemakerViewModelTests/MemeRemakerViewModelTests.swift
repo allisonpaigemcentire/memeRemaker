@@ -1,31 +1,30 @@
-//
-//  memeRemakerViewModelTests.swift
-//  memeRemakerViewModelTests
-//
-//  Created by Allison Mcentire on 9/5/22.
-
 import XCTest
 @testable import memeRemaker
 
-@MainActor
 class MemeRemakerViewModelTests: XCTestCase {
 
-    let SUT = MemeRemakerViewModel()
-//    
-//    func test_getMeme_expectedInputValues_generatesMemeImage() async throws {
-//        XCTAssertNil(SUT.generatedMeme)
-//        SUT.memeText = "Welcome to the Meme test"
-//        await SUT.getMemeNameArray()
-//        await SUT.getMeme()
-//        XCTAssertNotNil(SUT.generatedMeme)
-//    }
-//    
-//    func test_getMeme_unexpectedInputValues_generatesMemeImage() async throws {
-//        XCTAssertNil(SUT.generatedMeme)
-//        SUT.memeText = "(*&^%$#@#$%^&*&^%$#$%^&*&^%$#$%^"
-//        await SUT.getMemeNameArray()
-//        await SUT.getMeme()
-//        XCTAssertNotNil(SUT.generatedMeme)
-//    }
+    private var cancellables = Set<AnyCancellable>()
+   
+    func test_memeNameArray_DoesNotIncludedDiscardedValues() async {
+        let viewModel = await MemeRemakerViewModel()
+        let array = await viewModel.memeNameArray
+        Task {
+            await viewModel.getMemeNameArray()
+            XCTAssertEqual(array.count, 799)
+            XCTAssertTrue(array.contains(MemeName(name: "Condescending-Wonka")))
+            XCTAssertFalse(array.contains(MemeName(name: "Nickleback")))
+        }
+    }
+    
+    func test_getMeme() async {
+        let viewModel = await MemeRemakerViewModel()
+        let meme = await viewModel.generatedMeme
+        XCTAssertNil(meme)
+        Task {
+            await viewModel.getMemeNameArray()
+            await viewModel.getMeme()
+            XCTAssertNotNil(meme)
+        }
+    }
+    
 }
-

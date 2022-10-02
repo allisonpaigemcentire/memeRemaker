@@ -11,22 +11,24 @@ import XCTest
 class MemeRemakerServiceTests: XCTestCase {
     
     let SUT = MemeRemakerService()
+    
+    
 
     func test_fetchMemeNamesStream_fetches_ExpectedName() async throws {
         let expectation = self.expectation(description: "Name received.")
-        let fulfillExpectation = { expectation.fulfill() }
-
+        
         guard let url = URL(string: Constants.nameArray) else { return }
         let asyncSequenceTask = Task {
             for try await name in SUT.fetchMemeNamesStream(url: url) {
                 if name == "confession-kid" {
-                    fulfillExpectation()
+                    expectation.fulfill()
                 }
             }
         }
         await waitForExpectations(timeout: 10)
         asyncSequenceTask.cancel()
     }
+    
     
     @MainActor func test_generateRequestURL_Returns_ExpectedURL() {
         let url = SUT.generateRequestURL(memeText: "Give me a meme", imageName: "Condescending-Wonka")

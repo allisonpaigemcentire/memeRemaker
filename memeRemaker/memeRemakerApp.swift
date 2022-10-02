@@ -11,7 +11,7 @@ import SwiftUI
 struct memeRemakerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(showPicker: true)
+            ContentView(showPicker: false)
         }
     }
 }
