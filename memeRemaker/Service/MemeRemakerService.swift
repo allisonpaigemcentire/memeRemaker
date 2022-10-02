@@ -1,9 +1,3 @@
-//
-//  MemeRemakerService.swift
-//  memeRemaker
-//
-//  Created by Allison Mcentire on 9/11/22.
-//
 import Foundation
 import UIKit
 

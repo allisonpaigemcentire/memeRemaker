@@ -2,9 +2,7 @@ import XCTest
 @testable import memeRemaker
 
 class MemeRemakerViewModelTests: XCTestCase {
-
-    private var cancellables = Set<AnyCancellable>()
-   
+    
     func test_memeNameArray_DoesNotIncludedDiscardedValues() async {
         let viewModel = await MemeRemakerViewModel()
         let array = await viewModel.memeNameArray

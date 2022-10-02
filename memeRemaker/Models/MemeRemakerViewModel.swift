@@ -17,7 +17,7 @@ class MemeRemakerViewModel: ObservableObject {
     internal var memeContainer: GeneratedMeme?
     
     let memeRemakerService = MemeRemakerService()
-    let discardedMemes = DiscardedMemes()
+    let memes = Memes()
     
     init() {}
 
@@ -26,7 +26,7 @@ class MemeRemakerViewModel: ObservableObject {
         
         do {
             for try await name in memeRemakerService.fetchMemeNamesStream(url: url) {
-                if !discardedMemes.discardedMemeArray.contains(name) {
+                if !memes.discardedMemeArray.contains(name) {
                     memeNameArray.append(MemeName(name: name))
                 }
             }

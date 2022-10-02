@@ -38,8 +38,6 @@ struct ContentView: View {
                 .pickerStyle(WheelPickerStyle())
             }
             Button("Generate Meme") {
-                // how would we cancel this call if the view were to be dismissed?
-                // https://www.hackingwithswift.com/quick-start/concurrency/how-to-cancel-a-task
                 if showPicker {
                     Task { await viewModel.getMeme(selection: selectedMeme.name) }
                 } else {
@@ -54,9 +52,3 @@ struct ContentView: View {
         }
     }
 }
-//
-//Picker(selection: $selectedMeme, label: Text("Please choose a color")) {
-//    ForEach(viewModel.memeNameArray) { memeName in
-//            Text(memeName.name).tag(memeName.id)
-//        }
-//    }
