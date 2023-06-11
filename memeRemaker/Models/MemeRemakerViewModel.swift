@@ -37,15 +37,17 @@ class MemeRemakerViewModel: ObservableObject {
     }
 
     internal func getMeme(selection: String? = nil) async {
-        let count = memeNameArray.count - 1
-        
-        let url = memeRemakerService.generateRequestURL(memeText: memeText, imageName: selection ?? memeNameArray[Int.random(in: 1...count)].name)
-        do {
-            let imageResponse = try await memeRemakerService.fetchMemeImage(url: url)
-            let generatedMeme = GeneratedMeme(memeImage: imageResponse, memeText: memeText, timeStamp: Date())
-            self.generatedMeme = generatedMeme.memeImage
-        } catch {
-            print(error)
+        Task {
+            let count = memeNameArray.count - 1
+            
+            let url = memeRemakerService.generateRequestURL(memeText: memeText, imageName: selection ?? memeNameArray[Int.random(in: 1...count)].name)
+            do {
+                let imageResponse = try await memeRemakerService.fetchMemeImage(url: url)
+                let generatedMeme = GeneratedMeme(memeImage: imageResponse, memeText: memeText, timeStamp: Date())
+                self.generatedMeme = generatedMeme.memeImage
+            } catch {
+                print(error)
+            }
         }
     }
     
