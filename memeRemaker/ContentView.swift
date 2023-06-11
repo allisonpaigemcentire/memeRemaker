@@ -29,7 +29,7 @@ struct ContentView: View {
             MemeTextField("Input Meme Text", text: $viewModel.memeText)
                 .padding(.horizontal)
             if showPicker {
-                Picker("Pick a meme", selection: $selectedMeme) {
+                Picker("Choose a meme", selection: $selectedMeme) {
                     ForEach(viewModel.memeNameArray, id: \.self) {
                         Text($0.name)
                     }
