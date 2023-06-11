@@ -15,3 +15,24 @@ extension Array {
         return (left: Array(leftSplit), right: Array(rightSplit))
     }
 }
+
+extension AsyncSequence {
+  func forEach(_ body: (Element) async throws -> Void) async throws {
+    for try await element in self {
+      try await body(element)
+    }
+  }
+}
+
+extension String: LocalizedError {
+  public var errorDescription: String? {
+    return self
+  }
+}
+
+extension URLSession {
+
+    func uploadTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask {
+        uploadTask(with: request, from: request.httpBody, completionHandler: completionHandler)
+    }
+}

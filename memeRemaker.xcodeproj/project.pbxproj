@@ -15,9 +15,6 @@
 		F394964A28C6645C005FE533 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394964928C6645C005FE533 /* ContentView.swift */; };
 		F394964C28C6645D005FE533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394964B28C6645D005FE533 /* Assets.xcassets */; };
 		F394964F28C6645D005FE533 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394964E28C6645D005FE533 /* Preview Assets.xcassets */; };
-		F394965928C6645E005FE533 /* memeRemakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394965828C6645E005FE533 /* memeRemakerTests.swift */; };
-		F394966328C6645E005FE533 /* memeRemakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394966228C6645E005FE533 /* memeRemakerUITests.swift */; };
-		F394966528C6645E005FE533 /* memeRemakerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394966428C6645E005FE533 /* memeRemakerUITestsLaunchTests.swift */; };
 		F394967328C66502005FE533 /* MemeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394967228C66502005FE533 /* MemeTextField.swift */; };
 		F394967528C66658005FE533 /* MemeRemakerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394967428C66658005FE533 /* MemeRemakerViewModel.swift */; };
 		F394967D28C66CED005FE533 /* MemeRemakerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394967C28C66CED005FE533 /* MemeRemakerViewModelTests.swift */; };
@@ -60,10 +57,7 @@
 		F394964B28C6645D005FE533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F394964E28C6645D005FE533 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F394965428C6645E005FE533 /* memeRemakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memeRemakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F394965828C6645E005FE533 /* memeRemakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memeRemakerTests.swift; sourceTree = "<group>"; };
 		F394965E28C6645E005FE533 /* memeRemakerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memeRemakerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F394966228C6645E005FE533 /* memeRemakerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memeRemakerUITests.swift; sourceTree = "<group>"; };
-		F394966428C6645E005FE533 /* memeRemakerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memeRemakerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F394967228C66502005FE533 /* MemeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTextField.swift; sourceTree = "<group>"; };
 		F394967428C66658005FE533 /* MemeRemakerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeRemakerViewModel.swift; sourceTree = "<group>"; };
 		F394967A28C66CED005FE533 /* memeRemakerViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memeRemakerViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,8 +123,6 @@
 			children = (
 				F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */,
 				F394964628C6645C005FE533 /* memeRemaker */,
-				F394965728C6645E005FE533 /* memeRemakerTests */,
-				F394966128C6645E005FE533 /* memeRemakerUITests */,
 				F394967B28C66CED005FE533 /* memeRemakerViewModelTests */,
 				F394964528C6645C005FE533 /* Products */,
 			);
@@ -168,23 +160,6 @@
 				F394964E28C6645D005FE533 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		F394965728C6645E005FE533 /* memeRemakerTests */ = {
-			isa = PBXGroup;
-			children = (
-				F394965828C6645E005FE533 /* memeRemakerTests.swift */,
-			);
-			path = memeRemakerTests;
-			sourceTree = "<group>";
-		};
-		F394966128C6645E005FE533 /* memeRemakerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F394966228C6645E005FE533 /* memeRemakerUITests.swift */,
-				F394966428C6645E005FE533 /* memeRemakerUITestsLaunchTests.swift */,
-			);
-			path = memeRemakerUITests;
 			sourceTree = "<group>";
 		};
 		F394967128C664ED005FE533 /* Utilities */ = {
@@ -386,7 +361,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F394965928C6645E005FE533 /* memeRemakerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,8 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F394966528C6645E005FE533 /* memeRemakerUITestsLaunchTests.swift in Sources */,
-				F394966328C6645E005FE533 /* memeRemakerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
