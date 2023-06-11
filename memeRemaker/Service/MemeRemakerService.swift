@@ -4,12 +4,18 @@ import UIKit
 class MemeRemakerService {
     
     var session = URLSession.shared
+    let apiKey: String = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as! String
     
     internal func fetchMemeNames(url: URL) async throws -> [String] {
         
+        let headers = [
+            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+        ]
+        
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
-        request.allHTTPHeaderFields = Constants.headers
+        request.allHTTPHeaderFields = headers
 
         let decoder = JSONDecoder()
         let (data, _) = try await session.data(for: request as URLRequest)
@@ -18,9 +24,14 @@ class MemeRemakerService {
 
     internal func fetchMemeNamesStream(url: URL) -> AsyncThrowingStream<String, Error> {
         
+        let headers = [
+            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+        ]
+        
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
-        request.allHTTPHeaderFields = Constants.headers
+        request.allHTTPHeaderFields = headers
 
         let decoder = JSONDecoder()
         
@@ -42,10 +53,14 @@ class MemeRemakerService {
 
     internal func fetchMemeImage(url: URL) async throws -> UIImage {
         
+        let headers = [
+            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+        ]
+        
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
-        request.allHTTPHeaderFields = Constants.headers
-
+        request.allHTTPHeaderFields = headers
         
         do {
             let (data, _) = try await session.data(for: request as URLRequest)

@@ -70,6 +70,8 @@
 		F394967C28C66CED005FE533 /* MemeRemakerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeRemakerViewModelTests.swift; sourceTree = "<group>"; };
 		F3A58AC728D7727F00FAAADA /* GeneratedMeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedMeme.swift; sourceTree = "<group>"; };
 		F3A58AC928D7B6C400FAAADA /* DiscardedMemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardedMemes.swift; sourceTree = "<group>"; };
+		F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		F3DF5E522A366E2C00EF5F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		F394963B28C6645C005FE533 = {
 			isa = PBXGroup;
 			children = (
+				F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */,
 				F394964628C6645C005FE533 /* memeRemaker */,
 				F394965728C6645E005FE533 /* memeRemakerTests */,
 				F394966128C6645E005FE533 /* memeRemakerUITests */,
@@ -147,6 +150,7 @@
 		F394964628C6645C005FE533 /* memeRemaker */ = {
 			isa = PBXGroup;
 			children = (
+				F3DF5E522A366E2C00EF5F7F /* Info.plist */,
 				F394964728C6645C005FE533 /* memeRemakerApp.swift */,
 				F394964928C6645C005FE533 /* ContentView.swift */,
 				F394964B28C6645D005FE533 /* Assets.xcassets */,
@@ -427,6 +431,7 @@
 /* Begin XCBuildConfiguration section */
 		F394966628C6645E005FE533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -487,6 +492,7 @@
 		};
 		F394966728C6645E005FE533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -541,6 +547,7 @@
 		};
 		F394966928C6645E005FE533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -550,6 +557,7 @@
 				DEVELOPMENT_TEAM = V243T33UAS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = memeRemaker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -570,6 +578,7 @@
 		};
 		F394966A28C6645E005FE533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -579,6 +588,7 @@
 				DEVELOPMENT_TEAM = V243T33UAS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = memeRemaker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -599,6 +609,7 @@
 		};
 		F394966C28C6645E005FE533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -619,6 +630,7 @@
 		};
 		F394966D28C6645E005FE533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -639,6 +651,7 @@
 		};
 		F394966F28C6645E005FE533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -657,6 +670,7 @@
 		};
 		F394967028C6645E005FE533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -675,6 +689,7 @@
 		};
 		F394968128C66CED005FE533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -693,6 +708,7 @@
 		};
 		F394968228C66CED005FE533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3DF5E512A366CB300EF5F7F /* Secrets.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

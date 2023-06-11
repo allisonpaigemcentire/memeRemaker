@@ -4,8 +4,8 @@ import XCTest
 class MemeRemakerViewModelTests: XCTestCase {
     
     func test_memeNameArray_DoesNotIncludedDiscardedValues() async {
-        let viewModel = await MemeRemakerViewModel()
-        let array = await viewModel.memeNameArray
+        let viewModel = MemeRemakerViewModel()
+        let array = viewModel.memeNameArray
         Task {
             await viewModel.getMemeNameArray()
             XCTAssertEqual(array.count, 799)
@@ -15,8 +15,8 @@ class MemeRemakerViewModelTests: XCTestCase {
     }
     
     func test_getMeme() async {
-        let viewModel = await MemeRemakerViewModel()
-        let meme = await viewModel.generatedMeme
+        let viewModel = MemeRemakerViewModel()
+        let meme = viewModel.generatedMeme
         XCTAssertNil(meme)
         Task {
             await viewModel.getMemeNameArray()
