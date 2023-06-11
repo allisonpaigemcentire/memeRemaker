@@ -25,4 +25,13 @@ class MemeRemakerViewModelTests: XCTestCase {
         }
     }
     
+    func test_getMemeReturns_ExpectedGeneratedMeme() async throws {
+        let SUT = MemeRemakerViewModel()
+        SUT.memeText = "Welcome to MemeRemaker"
+        
+        let expectedMeme = try await SUT.getGeneratedMeme(selection: "Aw-Yeah-Rage-Face")
+        XCTAssertEqual(expectedMeme.memeText, SUT.memeText)
+        XCTAssertNotNil(expectedMeme.memeImage)
+    }
+    
 }

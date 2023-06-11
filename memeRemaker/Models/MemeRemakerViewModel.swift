@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-@MainActor
+
 class MemeRemakerViewModel: ObservableObject {
     
     @Published var memeNameArray = [MemeName(name: "Aw-Yeah-Rage-Face")]
@@ -47,5 +47,12 @@ class MemeRemakerViewModel: ObservableObject {
         } catch {
             print(error)
         }
+    }
+    
+    internal func getGeneratedMeme(selection: String? = nil) async throws -> GeneratedMeme {
+        let count = memeNameArray.count - 1
+        let url = memeRemakerService.generateRequestURL(memeText: memeText, imageName: selection ?? memeNameArray[Int.random(in: 1...count)].name)
+        let imageResponse = try await memeRemakerService.fetchMemeImage(url: url)
+        return GeneratedMeme(memeImage: imageResponse, memeText: memeText, timeStamp: Date())
     }
 }
