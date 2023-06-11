@@ -37,12 +37,8 @@ struct ContentView: View {
                 .padding()
                 .pickerStyle(WheelPickerStyle())
             }
-            Button("Remake Meme") {
-                if showPicker {
-                    Task { await viewModel.getMeme(selection: selectedMeme.name) }
-                } else {
-                    Task { await viewModel.getMeme() }
-                }
+            Button("Generate Meme") {
+                Task { await viewModel.getMeme() }
             }
             .padding()
             .background(Color(red: 0, green: 0, blue: 0.5))
@@ -51,4 +47,5 @@ struct ContentView: View {
             await viewModel.getMemeNameArray()
         }
     }
+
 }

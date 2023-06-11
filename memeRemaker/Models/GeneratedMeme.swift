@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct MemeName: Identifiable, Hashable {
+struct MemeName: Codable, Identifiable, Hashable {
     var id: UUID
     var name: String
     
@@ -22,4 +22,12 @@ struct GeneratedMeme {
     let memeImage: UIImage
     let memeText: String
     let timeStamp: Date
+}
+
+struct InfoData: Codable {
+ let name: String
+}
+
+struct InfoResponse: Codable {
+  let request: InfoData
 }

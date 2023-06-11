@@ -6,11 +6,12 @@ class MemeRemakerService {
     var session = URLSession.shared
     let apiKey: String = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as! String
     
+   
     internal func fetchMemeNames(url: URL) async throws -> [String] {
         
         let headers = [
-            "X-RapidAPI-Key": apiKey,
-            "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+           "X-RapidAPI-Key": apiKey,
+           "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
         ]
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
@@ -25,8 +26,8 @@ class MemeRemakerService {
     internal func fetchMemeNamesStream(url: URL) -> AsyncThrowingStream<String, Error> {
         
         let headers = [
-            "X-RapidAPI-Key": apiKey,
-            "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+           "X-RapidAPI-Key": apiKey,
+           "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
         ]
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
@@ -43,7 +44,6 @@ class MemeRemakerService {
                     for name in try decoder.decode(Array<String>.self, from: data) {
                         continuation.yield(name)
                     }
-                    
                 } catch {
                     continuation.finish(throwing: error)
                 }
@@ -54,13 +54,14 @@ class MemeRemakerService {
     internal func fetchMemeImage(url: URL) async throws -> UIImage {
         
         let headers = [
-            "X-RapidAPI-Key": apiKey,
-            "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+           "X-RapidAPI-Key": apiKey,
+           "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
         ]
         
         let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
+
         
         do {
             let (data, _) = try await session.data(for: request as URLRequest)
@@ -92,6 +93,26 @@ class MemeRemakerService {
             return URL(fileURLWithPath: "no path")
         }
         return fallBackURL
+    }
+    
+    internal func fetchMemeImageWithCompletion(url: URL,
+                                               completion: @escaping (((UIImage?)) -> ()))  {
+        
+        let headers = [
+           "X-RapidAPI-Key": apiKey,
+           "X-RapidAPI-Host": "ronreiter-meme-generator.p.rapidapi.com"
+        ]
+        
+        let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            guard let data = data else { return }
+            completion(UIImage(data: data))
+        }
+        task.resume()
     }
 
 }
